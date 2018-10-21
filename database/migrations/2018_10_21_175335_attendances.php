@@ -14,6 +14,14 @@ class Attendances extends Migration
     public function up()
     {
         //
+        Schema::create('attendances', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('event_id')->unsigned();
+            $table->integer('student_id')->unsigned();
+            $table->enum('status', ['PRESENT','ABSENT', 'ON EXEAT'])->default('PRESENT');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -24,5 +32,6 @@ class Attendances extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('attendances');
     }
 }

@@ -14,6 +14,14 @@ class Events extends Migration
     public function up()
     {
         //
+        Schema::create('events', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->date('start');
+            $table->date('end');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -24,5 +32,6 @@ class Events extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('events');
     }
 }

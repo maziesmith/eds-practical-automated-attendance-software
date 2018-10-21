@@ -14,6 +14,13 @@ class Exeats extends Migration
     public function up()
     {
         //
+        Schema::create('exeats', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('student_id')->unsigned();
+            $table->enum('status', ['APPROVED','PENDING', 'DECLINED'])->default('APPROVED');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -24,5 +31,6 @@ class Exeats extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('exeats');
     }
 }
