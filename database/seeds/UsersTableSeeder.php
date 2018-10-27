@@ -18,5 +18,8 @@ class UsersTableSeeder extends Seeder
             'password' => 'fanan123',
             'role' => 'admin'
         ]);
+
+        //seed students
+        factory(App\user::class, 200)->create();
     }
 }
