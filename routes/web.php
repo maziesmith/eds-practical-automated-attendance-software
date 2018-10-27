@@ -23,3 +23,5 @@ Route::get('/event', 'HomeController@event')->name('event-show');
 Route::get('/exeat', 'HomeController@exeat')->name('exeat-show');
 //exeat controller
 Route::post('/exeat/create', "ExeatController@create")->name('exeat-create');
+//event controller
+Route::post('/event/create', "EventController@create")->name('event-create');
