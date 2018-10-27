@@ -12,9 +12,10 @@ EXEAT
 
 @section('content')
 <form action="/exeat/create" method="post">
+    @csrf
     <div class="form-group">
         <label>Student ID</label>
-        <input class="form-control" name="student_id"/>
+        <input class="form-control" name="student_id" value="{{ old('student_id') }}"/>
         <p class="help-block error">
             @if ($errors->has('student_id'))
                 <strong>{{ $errors->first('student_id') }}</strong>
@@ -24,7 +25,7 @@ EXEAT
 
     <div class="form-group">
         <label>Start Date</label>
-        <input name="start" type="date" class="form-control" />
+        <input name="start" type="date" class="form-control" value="{{ old('start') }}"/>
         <p class="help-block error">
             @if ($errors->has('start'))
                 <strong>{{ $errors->first('start') }}</strong>
@@ -34,7 +35,7 @@ EXEAT
 
     <div class="form-group">
         <label>End Date</label>
-        <input type="date" name="end" class="form-control" />
+        <input type="date" name="end" class="form-control" value="{{ old('end') }}"/>
         <p class="help-block error">
             @if ($errors->has('end'))
                 <strong>{{ $errors->first('end') }}</strong>
