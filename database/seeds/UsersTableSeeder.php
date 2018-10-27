@@ -20,6 +20,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         //seed students
-        factory(App\user::class, 200)->create();
+        factory(App\user::class, 100)->create();
     }
 }

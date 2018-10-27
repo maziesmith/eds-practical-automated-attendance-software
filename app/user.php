@@ -32,4 +32,14 @@ class user extends Authenticatable
        $this->attributes['password'] = bcrypt($value);
    }
 
+   public function attendances()
+   {
+      return $this->hasMany('App\attendance', 'student_id', 'identification');
+   }
+
+   public static function getStudentsIdentification($numberOfUsers)
+   {
+       return self::select('identification')->where('role','student')->limit($numberOfUsers)->get();
+   }
+
 }
