@@ -25,4 +25,19 @@ class HomeController extends Controller
     {
         return view('admin-dashboard');
     }
+
+    public function attendance()
+    {
+        return view('admin-attendance');
+    }
+
+    public function event()
+    {
+        return view('admin-event');
+    }
+
+    public function exeat()
+    {
+        return view('admin-exeat');
+    }
 }

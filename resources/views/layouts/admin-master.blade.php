@@ -60,20 +60,20 @@
 
 
                         <li class="active-link">
-                            <a href="index.html" ><i class="fa fa-desktop "></i>Dashboard</a>
+                            <a href="/home" ><i class="fa fa-desktop "></i>Dashboard</a>
                         </li>
 
 
                         <li>
-                            <a href="ui.html"><i class="fa fa-table "></i>Attendance</a>
+                            <a href="/attendance"><i class="fa fa-table "></i>Attendance</a>
                         </li>
 
                         <li>
-                            <a href="ui.html"><i class="fa fa-table "></i>Event</a>
+                            <a href="/event"><i class="fa fa-table "></i>Event</a>
                         </li>
 
                         <li>
-                            <a href="ui.html"><i class="fa fa-table "></i>Exeat</a>
+                            <a href="/exeat"><i class="fa fa-table "></i>Exeat</a>
                         </li>
 
                     </ul>
