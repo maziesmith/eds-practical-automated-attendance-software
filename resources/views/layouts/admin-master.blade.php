@@ -59,20 +59,20 @@
 
 
 
-                        <li class="active-link">
+                        <li @yield('active-dashboard')>
                             <a href="/home" ><i class="fa fa-desktop "></i>Dashboard</a>
                         </li>
 
 
-                        <li>
+                        <li @yield('active-attendance')>
                             <a href="/attendance"><i class="fa fa-table "></i>Attendance</a>
                         </li>
 
-                        <li>
+                        <li @yield('active-event')>
                             <a href="/event"><i class="fa fa-table "></i>Event</a>
                         </li>
 
-                        <li>
+                        <li @yield('active-exeat')>
                             <a href="/exeat"><i class="fa fa-table "></i>Exeat</a>
                         </li>
 
@@ -86,14 +86,16 @@
                 <div id="page-inner">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>BLANK PAGE </h2>
+                            <h2>@yield('main-title')</h2>
                         </div>
                     </div>
 
                     <hr />
 
                     <div class="row">
-                        @yield('content')
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
                 <!-- /. PAGE INNER  -->
