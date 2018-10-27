@@ -17,7 +17,7 @@ class Attendances extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->integer('student_id')->unsigned();
+            $table->string('student_id');
             $table->enum('status', ['PRESENT','ABSENT', 'ON EXEAT'])->default('PRESENT');
             $table->timestamps();
         });

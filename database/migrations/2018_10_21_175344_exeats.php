@@ -16,7 +16,7 @@ class Exeats extends Migration
         //
         Schema::create('exeats', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id')->unsigned();
+            $table->string('student_id');
             $table->enum('status', ['APPROVED','PENDING', 'DECLINED'])->default('APPROVED');
             $table->date('start');
             $table->date('end');
