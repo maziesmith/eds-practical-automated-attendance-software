@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//home controller
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/attendance', 'HomeController@attendance')->name('home');
-Route::get('/event', 'HomeController@event')->name('home');
-Route::get('/exeat', 'HomeController@exeat')->name('home');
+Route::get('/attendance', 'HomeController@attendance')->name('attendance-show');
+Route::get('/event', 'HomeController@event')->name('event-show');
+Route::get('/exeat', 'HomeController@exeat')->name('exeat-show');
+//exeat controller
+Route::post('/exeat/create', "ExeatController@create")->name('exeat-create');
