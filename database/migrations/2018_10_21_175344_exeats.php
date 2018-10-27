@@ -18,6 +18,8 @@ class Exeats extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->enum('status', ['APPROVED','PENDING', 'DECLINED'])->default('APPROVED');
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
         });
 
