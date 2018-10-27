@@ -1,5 +1,7 @@
 @extends('layouts.admin-master')
 
+@section('title', 'EAS - Dashboard')
+
 @section('active-dashboard')
 class="active-link"
 @endsection

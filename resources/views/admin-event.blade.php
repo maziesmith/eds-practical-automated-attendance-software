@@ -1,5 +1,7 @@
 @extends('layouts.admin-master')
 
+@section('title', 'EAS - Event')
+
 @section('active-event')
 class="active-link"
 @endsection
