@@ -11,7 +11,7 @@ UPLOAD ATTENDANCE
 @endsection
 
 @section('content')
-<form action="/attendance/compute" method="post">
+<form action="/attendance/upload" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label>Event ID</label>
@@ -24,7 +24,7 @@ UPLOAD ATTENDANCE
     </div>
 
     <div class="form-group">
-        <label>Event ID</label>
+        <label>Attendance File (.csv format)</label>
         <input class="form-control" name="attendance" type="file"/>
         <p class="help-block error">
             @if ($errors->has('attendance'))

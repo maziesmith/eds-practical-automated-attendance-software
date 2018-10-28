@@ -125,4 +125,28 @@ class AttendanceController extends Controller
         $this->computeOnExeat($event_id);
         return redirect(route('attendance-show'))->with('success','Attendances Computed');
     }
+
+    public function uploadAttendance(Request $request)
+    {
+        //validate input
+        $this->validate($request,[
+          'event_id' => 'required|exists:events,id',
+          'attendance' => 'required|mimes:csv,txt'
+        ]);
+
+
+       if ($request->hasFile('attendance')) {
+            //
+            $file = $request->file('attendance');
+            if ($file->getClientOriginalExtension() != "csv") {
+                return back()->withErrors(['attendance' => 'File type not allowed'])->withInput();
+            }
+            $fileName = time() . "." . $file->getClientOriginalExtension();
+            $file->storeAs('/uploads/attendances/',$fileName);
+        }
+
+        return redirect(route('attendance-upload-show'))->with('success', 'Attendance uploaded for event');
+        //public_path()
+
+    }
 }
