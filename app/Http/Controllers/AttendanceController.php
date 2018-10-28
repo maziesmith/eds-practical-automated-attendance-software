@@ -205,9 +205,17 @@ class AttendanceController extends Controller
         if ($validator->fails()) {
             $errors = $validator->errors();
             $errors = $errors->toArray();
-            return  $errors['event_id'][0];
+            return  response()->json(['type'=>'error', 'content'=>$errors['event_id'][0]]);
+        }
+        $event_id = $request->event_id;
+        $students = attendance::getAttendanceForEvent($event_id);
+        $studentObjects = [];
+        foreach ($students as $student) {
+            $user = user::where('identification', $student->student_id)->first();
+            $user->status = $student->status;
+            $studentObjects[] = $user;
         }
 
-
+        return response()->json(['type'=>'success', 'content'=>$studentObjects]);
     }
 }
