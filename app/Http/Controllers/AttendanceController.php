@@ -36,7 +36,7 @@ class AttendanceController extends Controller
 
     public function getStudentsOnExeatDuringEvent($event_id)
     {
-        $students = self::getAllStudents();
+        $students = user::getAllStudents();
         $event = event::find($event_id);
         $onExeat = [];
         foreach ($students as $student) {
@@ -72,12 +72,13 @@ class AttendanceController extends Controller
     {
         $onExeats = $this->getStudentsOnExeatDuringEvent($event_id);
         foreach ($onExeats as $student) {
-            foreach ($student->attendances as $attendance) { //loop through students attendance to see if student is present for particular event
+            $studentObject = user::where('identification', $student)->first();
+            foreach ($studentObject->attendances as $attendance) { //loop through students attendance to see if student is present for particular event
                 if ($attendance->event_id != $event_id) {
                     continue;
                 }
                if ($attendance->didNotAttendEvent($event_id) != null ) { //if student is registered absent
-                  $attendance->status = 'ONEXEAT';
+                  $attendance->status = 'ON EXEAT';
                   $attendance->save();
                   continue;
                }
@@ -89,7 +90,7 @@ class AttendanceController extends Controller
                attendance::create([
                    'event_id' => $event_id,
                    'student_id' => $student,
-                   'status' => 'ONEXEAT'
+                   'status' => 'ON EXEAT'
                ]);
             }
         }
