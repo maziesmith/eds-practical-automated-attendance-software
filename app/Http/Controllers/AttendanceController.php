@@ -136,17 +136,64 @@ class AttendanceController extends Controller
 
 
        if ($request->hasFile('attendance')) {
-            //
             $file = $request->file('attendance');
             if ($file->getClientOriginalExtension() != "csv") {
                 return back()->withErrors(['attendance' => 'File type not allowed'])->withInput();
             }
             $fileName = time() . "." . $file->getClientOriginalExtension();
-            $file->storeAs('/uploads/attendances/',$fileName);
+            $relativeFilePath = $file->storeAs('/uploads/attendances/',$fileName);
+            $absoluteFilePath = public_path() . "/" . $relativeFilePath;
+            $event_id = $request->event_id;
+            //read file contents
+            $attendances = $this->readUploadedAttendance($absoluteFilePath);
+            $isRecorded = false;
+            foreach ($attendances as $student_id) {
+                if(is_array($student_id)) {
+                    $studentObject = user::where('identification', $student_id[0])->first();
+                    foreach ($studentObject->attendances as $attendance) { //loop through students attendance to see if student is present for particular event
+                        if ($attendance->event_id != $event_id) {
+                            continue;
+                        }
+                       if ($attendance->didNotAttendEvent($event_id) != null ) { //if student is registered absent CONTINUE
+                           $isRecorded = true;
+                          continue;
+                       }
+
+                       if ($attendance->attendedEvent($event_id) != null ) {//if student is registered present
+                           //leave as it is
+                           $isRecorded = true;
+                           continue;
+                       }
+
+                       if ($attendance->onExeatForEvent($event_id) != null ) {//if student is registered ON EXEAT
+                           //leave as it is
+                           $isRecorded = true;
+                           continue;
+                       }
+                    }
+
+                    if (!$isRecorded) {
+                        attendance::create([
+                            'event_id' => $event_id,
+                            'student_id' => $student_id[0],
+                            'status' => 'PRESENT'
+                        ]);
+                    }                       
+                }
+            }
         }
-
         return redirect(route('attendance-upload-show'))->with('success', 'Attendance uploaded for event');
-        //public_path()
-
     }
+
+    public function readUploadedAttendance($filepath)
+    {
+        $file_handle = fopen($filepath, 'r');
+        while (!feof($file_handle) ) {
+            $fileContents[] = fgetcsv($file_handle, 1024);
+        }
+        fclose($file_handle);
+        return $fileContents;
+    }
+
+
 }
