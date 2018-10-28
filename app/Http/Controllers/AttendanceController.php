@@ -25,6 +25,17 @@ class AttendanceController extends Controller
                if ($attendance->attendedEvent($event_id) != null ) {
                    $isAbsent = False;
                }
+
+               //prevent logging of absent if it has already been done
+               if ($attendance->didNotAttendEvent($event_id) != null ) { //if student is registered absent
+                  $isAbsent = False;
+               }
+
+               //prevent logging of bsent if student already logge as on exeat
+               if ($attendance->onExeatForEvent($event_id) != null ) {//if student is registered ONEXEAT
+                   //leave as it is
+                   $isAbsent = False;
+               }
             }
 
             if ($isAbsent) {
@@ -87,6 +98,12 @@ class AttendanceController extends Controller
                    //leave as it is
                    continue;
                }
+
+               if ($attendance->onExeatForEvent($event_id) != null ) {//if student is registered ON EXEAT
+                   //leave as it is
+                   continue;
+               }
+
                attendance::create([
                    'event_id' => $event_id,
                    'student_id' => $student,

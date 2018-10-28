@@ -32,4 +32,13 @@ class attendance extends Model
 
        return null;
    }
+
+   public function onExeatForEvent($event_id)
+   {
+       if ($this->status == 'ON EXEAT' && $this->event_id == $event_id) {
+           return $this->student_id;
+       }
+
+       return null;
+   }
 }
