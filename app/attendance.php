@@ -15,4 +15,12 @@ class attendance extends Model
     */
    protected $guarded = ['id'];
 
+   public function attendedEvent($event_id)
+   {
+       if ($this->status == 'PRESENT' && $this->event_id == $event_id) {
+           return $this->student_id;
+       }
+
+       return null;
+   }
 }

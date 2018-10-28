@@ -11,7 +11,7 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //note: change date pending on when you want to test for attendance working
         $user = App\event::create([
             'name' => 'Chapel Service',
             'start' => '2018-10-27',
