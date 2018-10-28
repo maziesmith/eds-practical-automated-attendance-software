@@ -28,11 +28,12 @@ VIEW ATTENDANCE
         </form>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <button class="btn btn-large btn-primary" id="show-all">All</button>
+<div class="row" style="padding-top:10px;padding-bottom:10px;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <button class="btn btn-large btn-primary" id="show-all">ALL</button>
         <button class="btn btn-large btn-success" id="show-present">PRESENT</button>
         <button class="btn btn-large btn-danger" id="show-absent">ABSENT</button>
+        <button class="btn btn-large btn-warning" id="show-on-exeat">ON EXEAT</button>
     </div>
 </div>
 <div class="row">
@@ -40,11 +41,11 @@ VIEW ATTENDANCE
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>S/N</td>
-                    <td>Student Name</td>
-                    <td>Student Email</td>
-                    <td>Student Id</td>
-                    <td>Status</td>
+                    <td><b>S/N</b></td>
+                    <td><b>Student Name</b></td>
+                    <td><b>Student Email</b></td>
+                    <td><b>Student Id</b></td>
+                    <td><b>Status</b></td>
                 </tr>
             </thead>
             <tbody id="table-body">
@@ -103,6 +104,98 @@ VIEW ATTENDANCE
                 ");
             }*/
         });
+        $("button#show-present").click(function(){
+            $("#table-body").html("");
+            var attendanceData = $("#hold-attendance-data").text();
+            var attendanceDataParsed = JSON.parse(attendanceData);
+            var sn = 0
+            for( var j = 0; j < attendanceDataParsed.length; j++) {
+                var student = attendanceDataParsed[j];
+                if (student.status != "PRESENT") {
+                    continue;
+                }
+                var sn = sn + 1;
+
+                $("#table-body").append("\
+                <tr>\
+                    <td>" + sn + "</td>\
+                    <td>" + student.name + "</td>\
+                    <td>" + student.email + "</td>\
+                    <td>" + student.identification + "</td>\
+                    <td>" + student.status + "</td>\
+                </tr>\
+                ");
+            }
+        })
+
+        $("button#show-absent").click(function(){
+            $("#table-body").html("");
+            var attendanceData = $("#hold-attendance-data").text();
+            var attendanceDataParsed = JSON.parse(attendanceData);
+            var sn = 0
+            for( var j = 0; j < attendanceDataParsed.length; j++) {
+                var student = attendanceDataParsed[j];
+                if (student.status != "ABSENT") {
+                    continue;
+                }
+                var sn = sn + 1;
+
+                $("#table-body").append("\
+                <tr>\
+                    <td>" + sn + "</td>\
+                    <td>" + student.name + "</td>\
+                    <td>" + student.email + "</td>\
+                    <td>" + student.identification + "</td>\
+                    <td>" + student.status + "</td>\
+                </tr>\
+                ");
+            }
+        })
+
+        $("button#show-on-exeat").click(function(){
+            $("#table-body").html("");
+            var attendanceData = $("#hold-attendance-data").text();
+            var attendanceDataParsed = JSON.parse(attendanceData);
+            var sn = 0
+            for( var j = 0; j < attendanceDataParsed.length; j++) {
+                var student = attendanceDataParsed[j];
+                if (student.status != "ON EXEAT") {
+                    continue;
+                }
+                var sn = sn + 1;
+
+                $("#table-body").append("\
+                <tr>\
+                    <td>" + sn + "</td>\
+                    <td>" + student.name + "</td>\
+                    <td>" + student.email + "</td>\
+                    <td>" + student.identification + "</td>\
+                    <td>" + student.status + "</td>\
+                </tr>\
+                ");
+            }
+        })
+
+        $("button#show-all").click(function(){
+            $("#table-body").html("");
+            var attendanceData = $("#hold-attendance-data").text();
+            var attendanceDataParsed = JSON.parse(attendanceData);
+            var sn = 0
+            for( var j = 0; j < attendanceDataParsed.length; j++) {
+                var student = attendanceDataParsed[j];
+                var sn = sn + 1;
+
+                $("#table-body").append("\
+                <tr>\
+                    <td>" + sn + "</td>\
+                    <td>" + student.name + "</td>\
+                    <td>" + student.email + "</td>\
+                    <td>" + student.identification + "</td>\
+                    <td>" + student.status + "</td>\
+                </tr>\
+                ");
+            }
+        })
     })
 </script>
 @endsection

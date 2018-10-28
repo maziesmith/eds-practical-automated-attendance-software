@@ -60,12 +60,12 @@
 
 
 
-                        <li @yield('active-dashboard')>
+                        <!--li @yield('active-dashboard')>
                             <a href="/home" ><i class="fa fa-desktop "></i>Dashboard</a>
-                        </li>
+                        </li-->
 
                         <li @yield('active-attendance-upload')>
-                            <a href="/attendance-upload"><i class="fa fa-table "></i>Upload Attendance</a>
+                            <a href="/attendance-upload"><i class="fa fa-upload "></i>Upload Attendance</a>
                         </li>
 
                         <li @yield('active-attendance')>
@@ -73,15 +73,15 @@
                         </li>
 
                         <li @yield('active-attendance-view')>
-                            <a href="/attendance-view"><i class="fa fa-table "></i>View Attendance</a>
+                            <a href="/attendance-view"><i class="fa fa-eye "></i>View Attendance</a>
                         </li>
 
                         <li @yield('active-event')>
-                            <a href="/event"><i class="fa fa-table "></i>Event</a>
+                            <a href="/event"><i class="fa fa-calendar "></i>Event</a>
                         </li>
 
                         <li @yield('active-exeat')>
-                            <a href="/exeat"><i class="fa fa-table "></i>Exeat</a>
+                            <a href="/exeat"><i class="fa fa-home "></i>Exeat</a>
                         </li>
 
                     </ul>
