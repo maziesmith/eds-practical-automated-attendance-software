@@ -2,12 +2,12 @@
 
 @section('title', 'EAS - Attendance')
 
-@section('active-attendance')
+@section('active-attendance-upload')
 class="active-link"
 @endsection
 
 @section('main-title')
-COMPUTE ATTENDANCE
+UPLOAD ATTENDANCE
 @endsection
 
 @section('content')
@@ -22,6 +22,16 @@ COMPUTE ATTENDANCE
             @endif
         </p>
     </div>
-    <button type="submit" class="btn btn-primary">Compute</button>
+
+    <div class="form-group">
+        <label>Event ID</label>
+        <input class="form-control" name="attendance" type="file"/>
+        <p class="help-block error">
+            @if ($errors->has('attendance'))
+                <strong>{{ $errors->first('attendance') }}</strong>
+            @endif
+        </p>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 @endsection

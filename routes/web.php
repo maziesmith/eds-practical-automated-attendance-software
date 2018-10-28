@@ -19,6 +19,8 @@ Auth::routes();
 //home controller
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/attendance', 'HomeController@attendance')->name('attendance-show');
+Route::get('/attendance-upload', 'HomeController@attendanceUpload')->name('attendance-upload-show');
+Route::get('/attendance-view', 'HomeController@attendanceView')->name('attendance-view-show');
 Route::get('/event', 'HomeController@event')->name('event-show');
 Route::get('/exeat', 'HomeController@exeat')->name('exeat-show');
 //exeat controller

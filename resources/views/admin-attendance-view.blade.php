@@ -22,6 +22,6 @@ COMPUTE ATTENDANCE
             @endif
         </p>
     </div>
-    <button type="submit" class="btn btn-primary">Compute</button>
+    <button type="submit" class="btn btn-primary">Show</button>
 </form>
 @endsection

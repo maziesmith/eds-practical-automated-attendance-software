@@ -31,6 +31,16 @@ class HomeController extends Controller
         return view('admin-attendance');
     }
 
+    public function attendanceUpload()
+    {
+        return view('admin-attendance-upload');
+    }
+
+    public function attendanceView()
+    {
+        return view('admin-attendance-view');
+    }
+
     public function event()
     {
         return view('admin-event');

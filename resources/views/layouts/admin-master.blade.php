@@ -63,9 +63,16 @@
                             <a href="/home" ><i class="fa fa-desktop "></i>Dashboard</a>
                         </li>
 
+                        <li @yield('active-attendance-upload')>
+                            <a href="/attendance-upload"><i class="fa fa-table "></i>Upload Attendance</a>
+                        </li>
 
                         <li @yield('active-attendance')>
-                            <a href="/attendance"><i class="fa fa-table "></i>Attendance</a>
+                            <a href="/attendance"><i class="fa fa-table "></i>Compute Attendance</a>
+                        </li>
+
+                        <li @yield('active-attendance-view')>
+                            <a href="/attendance-view"><i class="fa fa-table "></i>View Attendance</a>
                         </li>
 
                         <li @yield('active-event')>
