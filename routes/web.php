@@ -30,3 +30,4 @@ Route::post('/event/create', "EventController@create")->name('event-create');
 //attendance cntroller
 Route::post('/attendance/compute', "AttendanceController@computeAttendance")->name('attendance-compute');
 Route::post('/attendance/upload', "AttendanceController@uploadAttendance")->name('attendance-upload');
+Route::post('/attendance/view', "AttendanceController@viewAttendance")->name('attendance-view');

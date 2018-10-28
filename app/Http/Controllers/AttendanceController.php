@@ -8,6 +8,7 @@ use App\attendance;
 use App\event;
 use App\exeat;
 use Carbon\Carbon;
+use Validator;
 
 class AttendanceController extends Controller
 {
@@ -178,7 +179,7 @@ class AttendanceController extends Controller
                             'student_id' => $student_id[0],
                             'status' => 'PRESENT'
                         ]);
-                    }                       
+                    }
                 }
             }
         }
@@ -195,5 +196,18 @@ class AttendanceController extends Controller
         return $fileContents;
     }
 
+    public function viewAttendance(Request $request)
+    {
+        $rules = [
+            'event_id' => 'required|exists:events,id'
+        ];
+         $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $errors = $errors->toArray();
+            return  $errors['event_id'][0];
+        }
 
+
+    }
 }

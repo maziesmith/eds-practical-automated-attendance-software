@@ -9,7 +9,7 @@
 
     100% To use For Personal And Commercial Use.
     IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
-   
+
     ========================================================  */
 
 
@@ -18,7 +18,7 @@
     var mainApp = {
 
         main_fun: function () {
-           
+
             /*====================================
               LOAD APPROPRIATE MENU BAR
            ======================================*/
@@ -30,8 +30,8 @@
                 }
             });
 
-          
-     
+
+
         },
 
         initialization: function () {
@@ -45,5 +45,9 @@
     $(document).ready(function () {
         mainApp.main_fun();
     });
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 }(jQuery));
