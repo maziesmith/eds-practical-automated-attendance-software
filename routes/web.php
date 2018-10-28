@@ -25,3 +25,5 @@ Route::get('/exeat', 'HomeController@exeat')->name('exeat-show');
 Route::post('/exeat/create', "ExeatController@create")->name('exeat-create');
 //event controller
 Route::post('/event/create', "EventController@create")->name('event-create');
+//attendance cntroller
+Route::post('/attendance/compute', "AttendanceController@computeAttendance")->name('atendance-compute');

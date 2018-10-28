@@ -56,4 +56,55 @@ class AttendanceController extends Controller
         }
         return $onExeat;
     }
+
+    public function computeAbsent($event_id){
+        $absents = $this->getStudentsAbsentForEvent($event_id);
+        foreach ($absents as $student) {
+            attendance::create([
+                'event_id' => $event_id,
+                'student_id' => $student,
+                'status' => 'ABSENT'
+            ]);
+        }
+    }
+
+    public function computeOnExeat($event_id)
+    {
+        $onExeats = $this->getStudentsOnExeatDuringEvent($event_id);
+        foreach ($onExeats as $student) {
+            foreach ($student->attendances as $attendance) { //loop through students attendance to see if student is present for particular event
+                if ($attendance->event_id != $event_id) {
+                    continue;
+                }
+               if ($attendance->didNotAttendEvent($event_id) != null ) { //if student is registered absent
+                  $attendance->status = 'ONEXEAT';
+                  $attendance->save();
+                  continue;
+               }
+
+               if ($attendance->attendedEvent($event_id) != null ) {//if student is registered present
+                   //leave as it is
+                   continue;
+               }
+               attendance::create([
+                   'event_id' => $event_id,
+                   'student_id' => $student,
+                   'status' => 'ONEXEAT'
+               ]);
+            }
+        }
+    }
+
+    public function computeAttendance(Request $request)
+    {
+        //validate input
+        $this->validate($request,[
+          'event_id' => 'required|exists:events,id'
+        ]);
+
+        $event_id = $request->event_id;
+        $this->computeAbsent($event_id);
+        $this->computeOnExeat($event_id);
+        return redirect(route('attendance-show'))->with('success','Attendances Computed');
+    }
 }

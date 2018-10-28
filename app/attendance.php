@@ -23,4 +23,13 @@ class attendance extends Model
 
        return null;
    }
+
+   public function didNotAttendEvent($event_id)
+   {
+       if ($this->status == 'ABSENT' && $this->event_id == $event_id) {
+           return $this->student_id;
+       }
+
+       return null;
+   }
 }
